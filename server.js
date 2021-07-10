@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
 
 if (process.env.NODE_ENV === 'production') {
-    app.use(expess.static(path.join(__dirname, 'client/build')));
+    app.use(express.static(path.join(__dirname, 'client/build')));
     app.get('*', function(req, res) {
         res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
     });
@@ -24,7 +24,7 @@ app.listen(port, error => {
     console.log("Server running on port" + port)
 });
 
-app. post('/payment', (req, res) => {
+app.post('/payment', (req, res) => {
     const body = {
         source: req.body.token.id,
         amount: req.body.amount,
